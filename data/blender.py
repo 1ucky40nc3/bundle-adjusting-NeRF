@@ -66,7 +66,7 @@ class Dataset(base.Dataset):
     def preprocess_image(self,opt,image,aug=None):
         image = super().preprocess_image(opt,image,aug=aug)
         rgb,mask = image[:3],image[3:]
-        if opt.data.bgcolor is not None:
+        if opt.data.bgcolor is not None and opt.data.bgcolor > 0.:
             rgb = rgb*mask+opt.data.bgcolor*(1-mask)
         return rgb
 
